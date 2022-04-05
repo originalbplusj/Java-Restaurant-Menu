@@ -1,7 +1,24 @@
 package restaurant;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class MenuItem {
 
+    //fields
+
+
+
+    private String itemName;
+    private double price;
+    private String description;
+    private String category;
+    private boolean isNewItem;
+
+    private ArrayList<MenuItem> items = new ArrayList<>();
+
+//getters and setters
 
     public String getItemName() {
         return itemName;
@@ -11,11 +28,6 @@ public class MenuItem {
         this.itemName = itemName;
     }
 
-    private String itemName;
-
-
-
-
     public double getPrice() {
         return price;
     }
@@ -23,10 +35,6 @@ public class MenuItem {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    private double price;
-
-
 
 
     public String getDescription() {
@@ -37,10 +45,6 @@ public class MenuItem {
         this.description = description;
     }
 
-    private String description;
-
-
-
 
     public String getCategory() {
         return category;
@@ -50,37 +54,55 @@ public class MenuItem {
         this.category = category;
     }
 
-    private String category;
 
+    public boolean isNewItem() {
 
-
-
-    public boolean isNew() {
-        return isNew;
+        return isNewItem;
     }
 
-    public void setNew(boolean aNew) {
-        isNew = aNew;
+    public void setNewItem(boolean newItem) {
+        isNewItem = newItem;
     }
 
-    private boolean isNew;
 
-    public MenuItem (String itemName, double price, String description, String category, boolean isNew) {
+    //constructor
+
+    public MenuItem(String itemName, double price, String description, String category, boolean isNewItem) {
         this.itemName = itemName;
-        this.price =  price;
+        this.price = price;
         this.description = description;
         this.category = category;
-        this.isNew = isNew;
+        this.isNewItem = isNewItem;
     }
 
     @Override
     public String toString() {
-        return "MenuItem{" +
-                "itemName='" + itemName + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                ", isNew=" + isNew +
-                '}';
+        return '\n' + itemName  + '\n' +
+                "price: " + price + '\n' +
+                "description: " + description + '\n' +
+                "category: " + category + '\n' +
+                "isNewItem: " + isNewItem + '\n';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Objects.equals(itemName, menuItem.itemName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(itemName);
     }
 }
+
+
+
+
+    //public void printMenuItem(){
+        //System.out.println(MenuItem);
+    //}
+
+

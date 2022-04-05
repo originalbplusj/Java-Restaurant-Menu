@@ -1,37 +1,55 @@
 package restaurant;
 
-import java.util.*;
 import java.time.LocalDate;
+import java.util.*;
 
 public class Menu {
 
 
     private static ArrayList<MenuItem> restaurantMenu = new ArrayList<>();
+     static LocalDate lastUpdatedDate;
+
+    public Menu(ArrayList<MenuItem> restaurantMenu) {
+        this.restaurantMenu = restaurantMenu;
+    }
 
 
-    public static void main(String[] args) {
+    //methods
 
-        LocalDate lastUpdatedDate = LocalDate.now();
-
-        MenuItem cheeseburger = new MenuItem("cheeseburger", 8.00, "grass-fed beef with choice of cheese", "main course", false );
-        MenuItem calamari = new MenuItem("calamari", 9.00, "served with special sauce", "appetizer", true);
-        MenuItem applePie = new MenuItem("apple pie", 4.00, "made with local apples", "dessert", false);
-
-        restaurantMenu.add(cheeseburger);
-        restaurantMenu.add(calamari);
-        restaurantMenu.add(applePie);
-
-
-        printMenu(restaurantMenu);
+    public static LocalDate lastUpdated(){
+        return lastUpdatedDate = LocalDate.now();
 
     }
 
+    public static void addItem(MenuItem item){
+        if(!restaurantMenu.contains(item)) {
+            restaurantMenu.add((MenuItem) item);
+            lastUpdated();
+        }else{
+            System.out.println("This item already exists");
+        }
+    }
+
+    public static void removeItem(MenuItem item){
+        restaurantMenu.remove((MenuItem) item);
+        lastUpdated();
+    }
+
+
     // Prints menu
 
-    private static void printMenu(ArrayList<MenuItem> restaurantMenu) {
-        for(MenuItem items: restaurantMenu){
-            System.out.println(items);
+    public static void printMenu() {
+        System.out.println(restaurantMenu);
+    }
+
+    public static void printMenuItem(MenuItem selection){
+        for (MenuItem item:
+             restaurantMenu) {
+            if(item.equals(selection)) {
+                System.out.println(item);
+            }
         }
+
     }
 
 
